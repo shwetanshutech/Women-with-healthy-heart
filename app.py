@@ -7,7 +7,7 @@ model = pickle.load(open('model.pkl', 'rb'))
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('../templates/index.html')
 
 @app.route('/predict',methods=['POST'])
 def predict():
@@ -17,6 +17,8 @@ def predict():
     int_features = [int(x) for x in request.form.values()]
     final_features = [np.array(int_features)]
     prediction = model.predict(final_features)
+    
+    return render.templet('../templates/final.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
